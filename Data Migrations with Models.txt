@@ -1,0 +1,52 @@
+------------Database Migration---------------
+Column Modifications
+Table Modifications
+
+up and down functions are used
+up function is used to migrate your table modifications and creation
+down function is used when we used rollback.
+renameColumn('from', 'to');
+dropColumn('city');
+dropcolumn(['city', 'avatar', 'location']);
+string('name', 50)->change();
+integer('votes')->unsigned()->default(1)->comment('mycomment')->change();
+--Change column order
+after('password', function(Blueprint $table){
+
+})
+----rename Table
+rename('from','to');
+drop('users');
+schema::dropifExists('users');
+if(schema::hasTable('users')){
+
+}
+if(schema::hasColumn('users', 'email')){
+
+}
+
+-----Constraints With Migrations------
+NOT NULL
+UNIQUE
+DEFAULT
+PRIMARY KEY
+FOREIGN KEY
+CHECK
+
+string('email')->nullable();
+string('email')->unique();
+unique('email');
+string('email')->default('No Email');
+primary('user_id');
+foreign('user_id')->references('id')->on('users');
+DB::statement('ALTER TABLE users ADD CONSTRAINT age CHECK (age > 18)');
+-----Modifiers----------
+after('column')
+autoincrement()
+comment('mycomment')
+first()
+from($integer)
+invisible()
+unsigned()
+useCurrent()
+useCurrentOnUpdate()
